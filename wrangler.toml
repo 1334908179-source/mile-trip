@@ -1,0 +1,7 @@
+name = "mile-trip"
+compatibility_date = "2025-10-01"
+
+[assets]
+directory = "./"
+serving_root = "/"
+not_found_handling = "single-page-application"
