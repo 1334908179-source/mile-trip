@@ -1,0 +1,371 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="day">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>弥勒 2 日 · 旅行手册</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='42' fill='%23c2410c'/><text x='50' y='66' font-size='48' text-anchor='middle' fill='white' font-family='sans-serif' font-weight='bold'>弥</text></svg>">
+<style>
+  :root{
+    --bg:#f6f1e7; --paper:#fffdf7; --ink:#26221c; --muted:#7a7264;
+    --line:#e3dccb; --line-strong:#cfc6af;
+    --d1:#c2410c; --d1-soft:#fde3d3;
+    --d2:#0f766e; --d2-soft:#d2ebe6;
+    --gold:#b98a1d;
+    --shadow:0 1px 0 rgba(60,45,20,.04), 0 8px 24px rgba(60,45,20,.06);
+  }
+  html[data-theme="night"]{
+    --bg:#14181d; --paper:#1c222a; --ink:#ece7db; --muted:#9aa0a8;
+    --line:#2a313a; --line-strong:#3a434e;
+    --d1:#f08a4b; --d1-soft:#3a2418;
+    --d2:#3fd0c2; --d2-soft:#14302e;
+    --gold:#d9b25a;
+    --shadow:0 1px 0 rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.3);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    background:var(--bg); color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+    font-size:15px; line-height:1.55; -webkit-font-smoothing:antialiased;
+    padding-bottom:60px;
+  }
+  .wrap{max-width:680px;margin:0 auto;padding:18px 16px}
+  header{display:flex;justify-content:space-between;align-items:flex-end;padding:6px 2px 14px;border-bottom:2px solid var(--ink);margin-bottom:16px}
+  header h1{font-size:26px;margin:0;letter-spacing:1px;font-weight:800}
+  header .sub{font-size:12px;color:var(--muted);margin-top:4px}
+  header .meta{text-align:right;font-size:12px;color:var(--muted);line-height:1.5}
+  .card{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:16px;box-shadow:var(--shadow);margin-bottom:14px}
+  .card h2{font-size:13px;margin:0 0 12px;letter-spacing:2px;color:var(--muted);font-weight:700;display:flex;align-items:center;gap:8px}
+  .card h2::before{content:"";width:8px;height:8px;background:var(--ink);border-radius:2px;display:inline-block}
+  .now{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:20px 18px;box-shadow:var(--shadow);margin-bottom:14px;position:relative;overflow:hidden}
+  .now .label{font-size:12px;color:var(--muted);letter-spacing:2px}
+  .now .next{font-size:18px;font-weight:700;margin:6px 0 14px;line-height:1.35}
+  .now .next .tag{display:inline-block;font-size:11px;font-weight:600;padding:2px 8px;border-radius:99px;margin-right:6px;vertical-align:2px}
+  .tag.fly{background:var(--d1-soft);color:var(--d1)}
+  .tag.train{background:var(--d2-soft);color:var(--d2)}
+  .tag.hotel{background:#f0e6c8;color:var(--gold)}
+  .cd{display:flex;gap:10px;align-items:flex-end}
+  .cd .unit{flex:1;text-align:center;background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:10px 4px 8px}
+  .cd .num{font-size:34px;font-weight:800;font-variant-numeric:tabular-nums;line-height:1;letter-spacing:-1px}
+  .cd .u{font-size:11px;color:var(--muted);margin-top:4px;letter-spacing:1px}
+  .cd-sep{font-size:28px;font-weight:800;color:var(--line-strong);padding-bottom:14px}
+  .tz{font-size:11px;color:var(--muted);margin-top:12px;display:flex;justify-content:space-between}
+  .mapbox{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:10px;box-shadow:var(--shadow);margin-bottom:14px}
+  .mapbox svg{width:100%;height:auto;display:block;border-radius:10px}
+  .legend{display:flex;gap:14px;flex-wrap:wrap;font-size:11px;color:var(--muted);padding:8px 6px 2px}
+  .legend span{display:inline-flex;align-items:center;gap:5px}
+  .legend i{width:14px;height:3px;border-radius:2px;display:inline-block}
+  .bk{border-left:3px solid var(--line-strong);padding:10px 12px;margin-bottom:10px;background:var(--bg);border-radius:0 10px 10px 0}
+  .bk.fly{border-left-color:var(--d1)}
+  .bk.train{border-left-color:var(--d2)}
+  .bk.hotel{border-left-color:var(--gold)}
+  .bk .row{display:flex;justify-content:space-between;gap:10px;font-weight:700;font-size:14px}
+  .bk .row .time{font-variant-numeric:tabular-nums;white-space:nowrap}
+  .bk .detail{font-size:12.5px;color:var(--muted);margin-top:4px;line-height:1.6}
+  .bk a{color:var(--d2);text-decoration:none;font-size:12px;display:inline-flex;align-items:center;gap:3px;margin-top:6px}
+  .day{border:1px solid var(--line);border-radius:14px;background:var(--paper);margin-bottom:12px;overflow:hidden;box-shadow:var(--shadow)}
+  .day-head{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;cursor:pointer;user-select:none}
+  .day-head .l{display:flex;align-items:center;gap:10px}
+  .day-head .dot{width:10px;height:10px;border-radius:50%}
+  .day.d1 .day-head .dot{background:var(--d1)}
+  .day.d2 .day-head .dot{background:var(--d2)}
+  .day-head h3{font-size:16px;margin:0;font-weight:800}
+  .day-head .date{font-size:11px;color:var(--muted);margin-top:2px}
+  .day-head .chev{transition:transform .2s;color:var(--muted);font-size:14px}
+  .day.open .chev{transform:rotate(180deg)}
+  .day-body{display:none;border-top:1px dashed var(--line);padding:8px 0}
+  .day.open .day-body{display:block}
+  .day-nav{padding:10px 16px;border-bottom:1px dashed var(--line);background:var(--bg)}
+  .day-nav a{display:inline-block;font-size:12px;font-weight:600;color:#fff;background:var(--ink);padding:7px 12px;border-radius:99px;text-decoration:none}
+  .day.d1 .day-nav a{background:var(--d1)}
+  .day.d2 .day-nav a{background:var(--d2)}
+  .tl{padding:8px 0}
+  .tl .ev{display:grid;grid-template-columns:64px 1fr;gap:10px;padding:10px 16px;border-bottom:1px dashed var(--line)}
+  .tl .ev:last-child{border-bottom:0}
+  .tl .t{font-variant-numeric:tabular-nums;font-weight:700;font-size:13px;padding-top:1px;color:var(--ink)}
+  .tl .c .name{font-weight:700;font-size:14px;display:flex;align-items:center;flex-wrap:wrap;gap:6px}
+  .tl .c .note{font-size:12.5px;color:var(--muted);margin-top:3px;line-height:1.55}
+  .tl .c .navlink{font-size:11.5px;color:var(--d2);text-decoration:none;display:inline-flex;gap:3px;align-items:center;margin-top:5px}
+  .pill{font-size:10.5px;font-weight:600;padding:1px 7px;border-radius:99px;background:var(--d1-soft);color:var(--d1)}
+  .pill.warn{background:#fbe2c2;color:#a15c00}
+  .pill.free{background:var(--d2-soft);color:var(--d2)}
+  .todo{list-style:none;padding:0;margin:0}
+  .todo li{padding:10px 12px;border-bottom:1px dashed var(--line);font-size:14px;display:flex;gap:10px;align-items:flex-start}
+  .todo li:last-child{border-bottom:0}
+  .todo li::before{content:"";width:6px;height:6px;background:var(--gold);border-radius:50%;margin-top:7px;flex-shrink:0}
+  .todo li small{display:block;color:var(--muted);font-size:12px;margin-top:2px}
+  .tips{font-size:13px;line-height:1.7}
+  .tips li{margin-bottom:8px}
+  .tips ul{padding-left:18px;margin:0}
+  .toggle{position:fixed;right:14px;bottom:14px;background:var(--ink);color:var(--bg);border:0;border-radius:99px;padding:10px 14px;font-size:12px;font-weight:700;cursor:pointer;box-shadow:var(--shadow)}
+  footer{text-align:center;font-size:11px;color:var(--muted);padding:20px 0 0}
+  @media(min-width:600px){
+    .cd .num{font-size:44px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div>
+      <h1>弥勒 · 2 日</h1>
+      <div class="sub">2 人 · 深圳 ⇌ 昆明 ⇌ 弥勒</div>
+    </div>
+    <div class="meta">
+      2026.11.13 周五<br>→ 11.15 周日
+    </div>
+  </header>
+
+  <div class="now">
+    <div class="label">此 刻 关 注</div>
+    <div class="next" id="nextEvent">加载中…</div>
+    <div class="cd">
+      <div class="unit"><div class="num" id="cdD">00</div><div class="u">天</div></div>
+      <div class="cd-sep">:</div>
+      <div class="unit"><div class="num" id="cdH">00</div><div class="u">时</div></div>
+      <div class="cd-sep">:</div>
+      <div class="unit"><div class="num" id="cdM">00</div><div class="u">分</div></div>
+      <div class="cd-sep">:</div>
+      <div class="unit"><div class="num" id="cdS">00</div><div class="u">秒</div></div>
+    </div>
+    <div class="tz">
+      <span id="tzNow">本地时间 --:--</span>
+      <span>所有时间均为中国标准时间 UTC+8</span>
+    </div>
+  </div>
+
+  <div class="mapbox">
+    <svg viewBox="0 0 360 260" xmlns="http://www.w3.org/2000/svg">
+      <rect width="360" height="260" fill="var(--bg)"/>
+      <path d="M60,180 q20,-18 50,-12 q30,6 38,22 q6,18 -18,26 q-30,10 -52,-4 q-20,-14 -18,-32 z" fill="var(--d2-soft)" stroke="var(--d2)" stroke-width="1.5" stroke-dasharray="3 2" opacity="0.8"/>
+      <text x="80" y="200" font-size="10" fill="var(--d2)" font-weight="700">湖泉</text>
+      <path d="M30,60 q40,10 60,30 q20,20 50,25 q30,5 55,20" fill="none" stroke="var(--d2)" stroke-width="2" stroke-dasharray="4 3" opacity="0.6"/>
+      <text x="40" y="55" font-size="10" fill="var(--d2)" font-weight="700">甸溪河</text>
+      <path d="M20,120 q40,-10 70,5 q30,15 50,5 q25,-12 55,0 q30,12 55,5 q30,-8 60,5" fill="none" stroke="var(--d1)" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M120,160 q30,10 60,5 q30,-5 55,-15 q25,-10 50,-8" fill="none" stroke="var(--d2)" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="6 4"/>
+      <circle cx="295" cy="152" r="5" fill="var(--d1)"/>
+      <text x="302" y="156" font-size="10" font-weight="700" fill="var(--ink)">弥勒站</text>
+      <circle cx="115" cy="195" r="6" fill="var(--gold)"/>
+      <text x="60" y="222" font-size="10" font-weight="700" fill="var(--gold)">★ 湖泉湾酒店(夜)</text>
+      <circle cx="240" cy="130" r="5" fill="var(--d1)"/>
+      <text x="200" y="118" font-size="10" font-weight="700" fill="var(--d1)">红河水乡</text>
+      <circle cx="150" cy="90" r="5" fill="var(--d1)"/>
+      <text x="155" y="85" font-size="10" font-weight="700" fill="var(--d1)">甸溪河骑行</text>
+      <circle cx="220" cy="170" r="5" fill="var(--d2)"/>
+      <text x="180" y="188" font-size="10" font-weight="700" fill="var(--d2)">佛城商都</text>
+      <circle cx="25" cy="118" r="5" fill="var(--muted)"/>
+      <text x="14" y="105" font-size="10" font-weight="700" fill="var(--muted)">昆明南站</text>
+      <text x="14" y="135" font-size="9" fill="var(--gold)">★ 柏尔曼(13日夜)</text>
+    </svg>
+    <div class="legend">
+      <span><i style="background:var(--d1)"></i>Day1 路线</span>
+      <span><i style="background:var(--d2)"></i>Day2 路线</span>
+      <span><i style="background:var(--gold)"></i>住宿点</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>已 确 认 · 机 / 酒 / 车</h2>
+
+    <div class="bk fly">
+      <div class="row"><span>FU6752 · 深圳 → 昆明</span><span class="time">21:10 → 23:55</span></div>
+      <div class="detail">11/13 周五 · 深圳宝安 T3 → 昆明长水<br>经济舱 · 已出票</div>
+      <a href="https://www.google.com/maps/dir/?api=1&destination=%E6%B7%B1%E5%9C%B3%E5%AE%9D%E5%AE%89%E5%9B%BD%E9%99%85%E6%9C%BA%E5%9C%BA" target="_blank" rel="noopener">导航去机场 ↗</a>
+    </div>
+
+    <div class="bk hotel">
+      <div class="row"><span>柏尔曼酒店 · 昆明高铁南站店</span><span class="time">11/13 入住</span></div>
+      <div class="detail">落地当晚住这里，凌晨 1:30 入住，次日 9:00 高铁步行可达</div>
+      <a href="https://www.google.com/maps/dir/?api=1&destination=%E6%9F%8F%E5%B0%94%E6%9B%BC%E9%85%92%E5%BA%97%20%E6%98%86%E6%98%8E%E9%AB%98%E9%93%81%E5%8D%97%E7%AB%99%E5%BA%97" target="_blank" rel="noopener">导航 ↗</a>
+    </div>
+
+    <div class="bk train">
+      <div class="row"><span>高铁 · 昆明南 → 弥勒</span><span class="time">09:00 → 09:35</span></div>
+      <div class="detail">11/14 周六 · 二等座<br><span class="pill warn">11/1 15:00 开售，记得抢票</span></div>
+      <a href="https://www.google.com/maps/dir/?api=1&destination=%E6%98%86%E6%98%8E%E5%8D%97%E7%AB%99" target="_blank" rel="noopener">导航去昆明南站 ↗</a>
+    </div>
+
+    <div class="bk hotel">
+      <div class="row"><span>弥勒湖泉湾酒店</span><span class="time">11/14 住 1 晚</span></div>
+      <div class="detail">C 座 · 行政大床 · 含免费温泉<br>就在湖泉生态园旁，11/15 12:00 退房</div>
+      <a href="https://www.google.com/maps/dir/?api=1&destination=%E5%BC%A5%E5%8B%92%E6%B9%96%E6%B3%89%E6%B9%BE%E9%85%92%E5%BA%97" target="_blank" rel="noopener">导航酒店 ↗</a>
+    </div>
+
+    <div class="bk train">
+      <div class="row"><span>高铁 · 弥勒 → 昆明南</span><span class="time">16:16 → 17:04</span></div>
+      <div class="detail">11/15 周日 · 二等座<br><span class="pill warn">11/1 15:00 开售</span></div>
+      <a href="https://www.google.com/maps/dir/?api=1&destination=%E5%BC%A5%E5%8B%92%E7%AB%99" target="_blank" rel="noopener">导航去弥勒站 ↗</a>
+    </div>
+
+    <div class="bk fly">
+      <div class="row"><span>BL6819 · 昆明 → 深圳</span><span class="time">20:05 → 22:00</span></div>
+      <div class="detail">11/15 周日 · 昆明长水 → 深圳宝安<br>经济舱 · 已出票<br><span class="pill warn">17:20 出站后直接打车去机场，约 50 分钟</span></div>
+      <a href="https://www.google.com/maps/dir/?api=1&destination=%E6%98%86%E6%98%8E%E9%95%BF%E6%B0%B4%E5%9B%BD%E9%99%85%E6%9C%BA%E5%9C%BA" target="_blank" rel="noopener">导航去机场 ↗</a>
+    </div>
+  </div>
+
+  <div class="card" style="padding-bottom:6px">
+    <h2>逐 日 行 程</h2>
+  </div>
+
+  <div class="day d1 open">
+    <div class="day-head" onclick="this.parentElement.classList.toggle('open')">
+      <div class="l">
+        <div class="dot"></div>
+        <div><h3>Day 0 · 出发</h3><div class="date">11/13 周五</div></div>
+      </div>
+      <div class="chev">▼</div>
+    </div>
+    <div class="day-body">
+      <div class="day-nav"><a href="https://www.google.com/maps/dir/?api=1&origin=%E6%B7%B1%E5%9C%B3%E5%AE%9D%E5%AE%89%E5%9B%BD%E9%99%85%E6%9C%BA%E5%9C%BA&destination=%E6%9F%8F%E5%B0%94%E6%9B%BC%E9%85%92%E5%BA%97%20%E6%98%86%E6%98%8E%E9%AB%98%E9%93%81%E5%8D%97%E7%AB%99%E5%BA%97" target="_blank" rel="noopener">一键导航：机场 → 柏尔曼酒店 ↗</a></div>
+      <div class="tl">
+        <div class="ev"><div class="t">21:10</div><div class="c"><div class="name">深圳宝安起飞 <span class="tag fly">航班</span></div><div class="note">FU6752，提前 2 小时到机场</div></div></div>
+        <div class="ev"><div class="t">23:55</div><div class="c"><div class="name">落地昆明长水</div><div class="note">取行李后打车去昆明南站，约 50 分钟</div></div></div>
+        <div class="ev"><div class="t">01:30</div><div class="c"><div class="name">入住柏尔曼酒店</div><div class="note">第二天 9:00 高铁，别睡过头</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day d1 open">
+    <div class="day-head" onclick="this.parentElement.classList.toggle('open')">
+      <div class="l">
+        <div class="dot"></div>
+        <div><h3>Day 1 · 弥勒</h3><div class="date">11/14 周六</div></div>
+      </div>
+      <div class="chev">▼</div>
+    </div>
+    <div class="day-body">
+      <div class="day-nav"><a href="https://www.google.com/maps/dir/?api=1&origin=%E6%98%86%E6%98%8E%E5%8D%97%E7%AB%99&destination=%E7%BA%A2%E6%B2%B3%E6%B0%B4%E4%B9%A1&waypoints=%E5%BC%A5%E5%8B%92%E7%AB%99%7C%E7%AB%B9%E5%9B%AD%E5%BA%84%E8%80%81%E5%BE%B7%E5%8D%A4%E9%B8%A1%E7%B1%B3%E7%BA%BF%7C%E6%B9%96%E6%B3%89%E7%94%9F%E6%80%81%E5%9B%AD%7C%E5%B0%8F%E5%A4%B4%E9%A5%AD%E5%BA%97%7C%E7%94%B8%E6%BA%AA%E6%B2%B3%E6%B9%BF%E5%9C%B0%E5%85%AC%E5%9B%AD%7C%E5%96%94%E5%96%94%E5%86%B0%E5%B1%8B%7C%E6%9D%A8%E8%89%B0%E7%83%A7%E7%83%A4" target="_blank" rel="noopener">一键导航：全天多点路线 ↗</a></div>
+      <div class="tl">
+        <div class="ev"><div class="t">09:00</div><div class="c"><div class="name">昆明南站出发 <span class="tag train">高铁</span></div><div class="note">09:35 到弥勒站</div><a class="navlink" href="https://www.google.com/maps/dir/?api=1&destination=%E5%BC%A5%E5%8B%92%E7%AB%99" target="_blank" rel="noopener">导航弥勒站 ↗</a></div></div>
+        <div class="ev"><div class="t">10:15</div><div class="c"><div class="name">竹园庄老德卤鸡米线 · 早餐</div><div class="note">湖泉生态园门口，推荐卤鸡米线 + 酥肉米线</div><a class="navlink" href="https://www.google.com/maps/dir/?api=1&destination=%E7%AB%B9%E5%9B%AD%E5%BA%84%E8%80%81%E5%BE%B7%E5%8D%A4%E9%B8%A1%E7%B1%B3%E7%BA%BF" target="_blank" rel="noopener">导航 ↗</a></div></div>
+        <div class="ev"><div class="t">10:45</div><div class="c"><div class="name">湖泉湾酒店寄存行李</div><div class="note">能提前入住就回房休息到中午；不能就逛湖泉生态园（免费）</div><a class="navlink" href="https://www.google.com/maps/dir/?api=1&destination=%E6%B9%96%E6%B3%89%E7%94%9F%E6%80%81%E5%9B%AD" target="_blank" rel="noopener">导航湖泉生态园 ↗</a></div></div>
+        <div class="ev"><div class="t">12:30</div><div class="c"><div class="name">小头饭店 · 午餐</div><div class="note">红河水乡 A9 商铺</div><a class="navlink" href="https://www.google.com/maps/dir/?api=1&destination=%E5%B0%8F%E5%A4%B4%E9%A5%AD%E5%BA%97" target="_blank" rel="noopener">导航 ↗</a></div></div>
+        <div class="ev"><div class="t">14:00</div><div class="c"><div class="name">甸溪河湿地公园 · 骑行 <span class="pill free">免费</span></div><div class="note"><span class="pill warn">务必从南门入园租单车</span> 10–15 元/小时，骑彩虹绿道约 2 小时</div><a class="navlink" href="https://www.google.com/maps/dir/?api=1&destination=%E7%94%B8%E6%BA%AA%E6%B2%B3%E6%B9%BF%E5%9C%B0%E5%85%AC%E5%9B%AD" target="_blank" rel="noopener">导航甸溪河南门 ↗</a></div></div>
+        <div class="ev"><div class="t">16:30</div><div class="c"><div class="name">喔喔冰屋 · 下午茶</div><a class="navlink" href="https://www.google.com/maps/dir/?api=1&destination=%E5%96%94%E5%96%94%E5%86%B0%E5%B1%8B" target="_blank" rel="noopener">导航 ↗</a></div></div>
+        <div class="ev"><div class="t">18:30</div><div class="c"><div class="name">杨坚烧烤 · 晚餐</div><a class="navlink" href="https://www.google.com/maps/dir/?api=1&destination=%E6%9D%A8%E8%89%B0%E7%83%A7%E7%83%A4" target="_blank" rel="noopener">导航 ↗</a></div></div>
+        <div class="ev"><div class="t">20:00</div><div class="c"><div class="name">红河水乡 · 夜景</div><div class="note"><span class="pill">水舞秀 20:30–21:00 · 周六限定</span> 别错过</div><a class="navlink" href="https://www.google.com/maps/dir/?api=1&destination=%E7%BA%A2%E6%B2%B3%E6%B0%B4%E4%B9%A1" target="_blank" rel="noopener">导航红河水乡 ↗</a></div></div>
+        <div class="ev"><div class="t">21:30</div><div class="c"><div class="name">回酒店泡温泉 <span class="tag hotel">酒店免费</span></div><div class="note">记得自带泳衣</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day d2">
+    <div class="day-head" onclick="this.parentElement.classList.toggle('open')">
+      <div class="l">
+        <div class="dot"></div>
+        <div><h3>Day 2 · 返程</h3><div class="date">11/15 周日</div></div>
+      </div>
+      <div class="chev">▼</div>
+    </div>
+    <div class="day-body">
+      <div class="day-nav"><a href="https://www.google.com/maps/dir/?api=1&origin=%E6%B9%96%E6%B3%89%E6%B9%BE%E9%85%92%E5%BA%97&destination=%E6%98%86%E6%98%8E%E9%95%BF%E6%B0%B4%E5%9B%BD%E9%99%85%E6%9C%BA%E5%9C%BA&waypoints=%E6%B2%88%E8%AE%B0%E9%85%B8%E8%8F%9C%E7%89%9B%E8%82%89%E7%81%AB%E9%94%85%7C%E4%BD%9B%E5%9F%8E%E5%95%86%E9%83%BD%7C%E6%9D%8E%E7%BA%A2%E8%8B%B1%E5%8D%A4%E9%B8%A1%E8%84%9A%7C%E5%BC%A5%E5%8B%92%E7%AB%99" target="_blank" rel="noopener">一键导航：酒店 → 沈记 → 佛城 → 弥勒站 → 机场 ↗</a></div>
+      <div class="tl">
+        <div class="ev"><div class="t">08:00</div><div class="c"><div class="name">酒店早餐</div></div></div>
+        <div class="ev"><div class="t">09:00</div><div class="c"><div class="name">再泡一次温泉</div><div class="note">10:30 前回房收拾</div></div></div>
+        <div class="ev"><div class="t">12:00</div><div class="c"><div class="name">退房 · 行李寄存</div></div></div>
+        <div class="ev"><div class="t">12:30</div><div class="c"><div class="name">沈记酸菜牛肉火锅 · 午餐 <span class="tag hotel">红河水乡店</span></div><a class="navlink" href="https://www.google.com/maps/dir/?api=1&destination=%E6%B2%88%E8%AE%B0%E9%85%B8%E8%8F%9C%E7%89%9B%E8%82%89%E7%81%AB%E9%94%85%20%E7%BA%A2%E6%B2%B3%E6%B0%B4%E4%B9%A1%E5%BA%97" target="_blank" rel="noopener">导航 ↗</a></div></div>
+        <div class="ev"><div class="t">13:30</div><div class="c"><div class="name">佛城商都逛逛 · 李红英卤鸡脚</div><div class="note">时间够就去，吃个卤鸡脚当点心</div><a class="navlink" href="https://www.google.com/maps/dir/?api=1&destination=%E4%BD%9B%E5%9F%8E%E5%95%86%E9%83%BD" target="_blank" rel="noopener">导航佛城商都 ↗</a></div></div>
+        <div class="ev"><div class="t">15:30</div><div class="c"><div class="name">打车去弥勒站</div><div class="note"><span class="pill warn">别拖</span> 16:16 的车</div></div></div>
+        <div class="ev"><div class="t">16:16</div><div class="c"><div class="name">弥勒 → 昆明南 <span class="tag train">高铁</span></div><div class="note">17:04 到，出站直接打车去长水机场（约 50 分钟），别在车站吃饭</div></div></div>
+        <div class="ev"><div class="t">20:05</div><div class="c"><div class="name">飞回深圳 <span class="tag fly">航班</span></div><div class="note">22:00 到宝安</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>待 办 清 单</h2>
+    <ul class="todo">
+      <li>抢 11/14 昆明南→弥勒高铁票<small>11/1 15:00 开售，设闹钟，携程/去哪儿点预约抢票</small></li>
+      <li>抢 11/15 弥勒→昆明南高铁票<small>同上，11/1 15:00</small></li>
+      <li>带身份证<small>高铁、酒店入住都要</small></li>
+      <li>带泳衣<small>酒店温泉免费泡， Day1 晚 + Day2 早各一次</small></li>
+      <li>带件薄外套<small>11 月弥勒早晚凉，水边风大</small></li>
+      <li>防晒霜 + 帽子<small>云南紫外线强</small></li>
+      <li>下载好离线地图<small>山里信号不稳，提前下好高德/百度离线包</small></li>
+      <li>换少量现金<small>小店、小摊有时不收码</small></li>
+      <li>预订柏尔曼酒店<small>昆明高铁南站店，落地当晚住</small></li>
+      <li>预订弥勒湖泉湾酒店<small>11/14 一晚，含温泉</small></li>
+    </ul>
+  </div>
+
+  <div class="card tips">
+    <h2>实 用 贴 士</h2>
+    <ul>
+      <li><b>水舞秀</b>只在周五、周六晚 20:30–21:00 放，你 Day1 周六正好赶上，20:00 就到位占位。</li>
+      <li><b>甸溪河骑行</b>一定要从南门进租单车，北门是另一个方向，骑错要绕路。</li>
+      <li><b>温泉免费</b>：住湖泉湾就含，不用另外买票；自带泳衣，现场买贵。</li>
+      <li><b>返程别恋战</b>：17:04 到昆明南后，打车去长水机场约 50 分钟，18:15 前要到航站楼，缓冲只有 1 小时 50 分。</li>
+      <li><b>滴滴/打车</b>：弥勒市区打车便宜，景点之间基本 10–15 元。</li>
+      <li><b>吃辣量力</b>：云南菜偏咸辣，不能吃辣提前跟老板说"免辣或少辣"。</li>
+      <li><b>时区</b>：所有时间按中国标准时间 UTC+8，跨时区打开页面倒计时自动算对。</li>
+    </ul>
+  </div>
+
+  <footer>弥勒 2 日 · 2 人 · 2026.11.13–11.15</footer>
+</div>
+
+<button class="toggle" id="themeBtn" onclick="toggleTheme()">切换夜间模式</button>
+
+<script>
+  const EVENTS = [
+    {t:"2026-11-13T21:10:00+08:00", name:"深圳宝安起飞 · FU6752", tag:"fly"},
+    {t:"2026-11-13T23:55:00+08:00", name:"落地昆明长水", tag:"fly"},
+    {t:"2026-11-14T09:00:00+08:00", name:"昆明南站高铁出发 → 弥勒", tag:"train"},
+    {t:"2026-11-14T20:30:00+08:00", name:"红河水乡水舞秀开始", tag:"hotel"},
+    {t:"2026-11-15T16:16:00+08:00", name:"弥勒站高铁 → 昆明南", tag:"train"},
+    {t:"2026-11-15T20:05:00+08:00", name:"昆明长水起飞 → 深圳", tag:"fly"},
+  ];
+
+  function autoTheme(){
+    const h = new Date().getHours();
+    const night = (h >= 19 || h < 7);
+    document.documentElement.setAttribute("data-theme", night ? "night" : "day");
+    document.getElementById("themeBtn").textContent = night ? "切回日间" : "夜间模式";
+  }
+  function toggleTheme(){
+    const cur = document.documentElement.getAttribute("data-theme");
+    const next = cur === "day" ? "night" : "day";
+    document.documentElement.setAttribute("data-theme", next);
+    document.getElementById("themeBtn").textContent = next === "night" ? "切回日间" : "夜间模式";
+  }
+  autoTheme();
+
+  const tagLabel = {fly:"航班", train:"高铁", hotel:"酒店/活动"};
+  function pad(n){return String(n).padStart(2,"0")}
+  function tick(){
+    const now = new Date();
+    document.getElementById("tzNow").textContent = "本地 " + pad(now.getHours()) + ":" + pad(now.getMinutes());
+    let next = null;
+    for(const e of EVENTS){
+      const d = new Date(e.t);
+      if(d > now){ next = e; break; }
+    }
+    const nextEl = document.getElementById("nextEvent");
+    if(!next){
+      nextEl.innerHTML = "旅程已结束";
+      document.getElementById("cdD").textContent="00";
+      document.getElementById("cdH").textContent="00";
+      document.getElementById("cdM").textContent="00";
+      document.getElementById("cdS").textContent="00";
+      return;
+    }
+    const target = new Date(next.t);
+    const diff = target - now;
+    const d = Math.floor(diff/86400000);
+    const h = Math.floor(diff%86400000/3600000);
+    const m = Math.floor(diff%3600000/60000);
+    const s = Math.floor(diff%60000/1000);
+    document.getElementById("cdD").textContent = pad(d);
+    document.getElementById("cdH").textContent = pad(h);
+    document.getElementById("cdM").textContent = pad(m);
+    document.getElementById("cdS").textContent = pad(s);
+    nextEl.innerHTML = `<span class="tag ${next.tag}">${tagLabel[next.tag]}</span>${next.name}`;
+  }
+  tick();
+  setInterval(tick, 1000);
+</script>
+</body>
+</html>
