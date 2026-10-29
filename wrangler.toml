@@ -1,5 +1,7 @@
 name = "mile-trip"
 compatibility_date = "2025-10-01"
+main = "index.js"
 
 [assets]
 directory = "./"
+binding = "ASSETS"
